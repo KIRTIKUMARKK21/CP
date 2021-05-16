@@ -64,7 +64,7 @@ void solve()
 			{
 				no++;
 			}
-			if (d > ml)
+			if (d > maxl)
 			{
 				maxl = d;
 				no = 1;
