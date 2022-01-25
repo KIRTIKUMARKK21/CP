@@ -1,31 +1,43 @@
-
-void lis()
+// longest non decreasing sequnece
+int ldns(vector<int>v)
 {
-
-	int n;
-	cin >> n;
-	std::vector<int>v(n, 0);
-	for (int i = 0; i < n; ++i)
+	int n = v.size();
+	vector<int>dp;
+	for (auto it : v)
 	{
-		cin >> v[i];
-		/* code */
-	}
-	std::vector<int>dp;
-	//nlogn solution
-	dp.pb(v[0]);
-	for (int i = 1; i < n; i++)
-	{
-		if (dp.back() < v[i])
+		auto  j = upper_bound(dp.begin(), dp.end(), it);
+		if (j==dp.end())
 		{
-			dp.pb(v[i]);
-		}
-		else
-		{
-			int it = lower_bound(dp.begin(), dp.end(), v[i]) - dp.begin();
-			dp[it] = v[i];
-		}
-	}
-	cout << dp.size() << endl;
+			dp.pb(it);
 
+		}
+        else
+        {
+            *j=it;
+        }
+     }
+     return dp.size();
+
+}
+
+// longest incresing sequnece
+int lis(vector<int>v)
+{
+	int n = v.size();
+	vector<int>dp;
+	for (auto it : v)
+	{
+		auto  j = lower_bound(dp.begin(), dp.end(), it);
+		if (j==dp.end())
+		{
+			dp.pb(it);
+
+		}
+        else
+        {
+            *j=it;
+        }
+     }
+     return dp.size();
 
 }
